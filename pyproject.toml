@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "sazed-mcp"
+version = "0.1.0"
+description = "MCP bridge from Claude Desktop to the Sazed agent"
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mcp = {extras = ["cli"], version = "^1.0"}
+httpx = "^0.27"
+pydantic-settings = "^2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
