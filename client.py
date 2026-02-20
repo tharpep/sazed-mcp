@@ -1,7 +1,10 @@
+import uuid
+
 import httpx
 from config import settings
 
-SESSION_ID = "mcp-claude-desktop"
+# Deterministic UUID for the persistent MCP session — always resolves to the same value
+SESSION_ID = str(uuid.uuid5(uuid.NAMESPACE_DNS, "mcp-claude-desktop"))
 
 
 async def chat(message: str) -> str:
