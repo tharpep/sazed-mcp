@@ -57,6 +57,29 @@ async def search_knowledge_base(
     return await gateway("POST", "/kb/search", query=query, categories=categories, top_k=top_k)
 
 
+# ── Multi-Platform Search ────────────────────────────────────────────────────
+
+
+@mcp.tool()
+async def aggregate_search(
+    query: str,
+    max_results: Optional[int] = None,
+    platforms: Optional[list[str]] = None,
+    since: Optional[str] = None,
+) -> str:
+    """
+    Search across Reddit, Hacker News, Bluesky, and news sources simultaneously.
+    Returns normalized results with credibility tiers, corroboration clusters,
+    and bias signals (hedge ratio, named source count, content type, fact checks).
+    platforms: 'reddit','hn','bluesky','gnews','google_news_rss','rss'. Omit for all.
+    since: ISO 8601 timestamp — only return results newer than this (useful for alerts).
+    """
+    return await gateway(
+        "POST", "/multi-search/aggregate",
+        query=query, max_results=max_results, platforms=platforms, since=since,
+    )
+
+
 # ── Google Drive ──────────────────────────────────────────────────────────────
 
 
